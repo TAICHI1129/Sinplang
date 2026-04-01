@@ -1,0 +1,10 @@
+-- Simplang Test
+@limit = (3)
+@msg = ("Executing native assembly sleep...")
+
+print(@msg)
+exec(@limit)[
+    print("Wait 1 second...")
+    sleep(1000)
+]
+print("Done!")

@@ -1,0 +1,22 @@
+// simplang.lark
+start: statement*
+
+?statement: var_assign
+          | exec_loop
+          | func_call
+
+var_assign: "@" CNAME "=" "(" expression ")"
+exec_loop: "exec" "(" expression ")" "[" statement* "]"
+func_call: CNAME "(" [expression ("," expression)*] ")"
+
+?expression: NUMBER -> number
+           | ESCAPED_STRING -> string
+           | "@" CNAME -> variable
+
+%import common.CNAME
+%import common.NUMBER
+%import common.ESCAPED_STRING
+%import common.WS
+%import common.SH_COMMENT
+%ignore WS
+%ignore SH_COMMENT
